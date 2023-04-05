@@ -12,5 +12,6 @@ const controller = new MatcheController(service);
 
 matcheRouter.get('/', controller.getAll);
 matcheRouter.patch('/:id/finish', verifyValidLogin, controller.finalizaMatche);
+matcheRouter.patch('/:id', verifyValidLogin, controller.updateGoals);
 
 export default matcheRouter;

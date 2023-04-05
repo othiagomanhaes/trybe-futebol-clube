@@ -52,6 +52,18 @@ class MatcheService {
       { where: { id } },
     );
   }
+
+  public async updateGoals(
+    id: number,
+    homeTeamGoals: number,
+    awayTeamGoals: number,
+  ): Promise<void> {
+    await this.matche.update(
+      { homeTeamGoals,
+        awayTeamGoals },
+      { where: { id } },
+    );
+  }
 }
 
 export default MatcheService;
