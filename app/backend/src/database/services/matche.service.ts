@@ -64,6 +64,24 @@ class MatcheService {
       { where: { id } },
     );
   }
+
+  private verifyTeam = async (id: number) => {
+    const hasTeam = await this.matche.findByPk(id);
+    return hasTeam;
+  };
+
+  public async createNewMatche(newPartida: matcheModel): Promise<matcheModel | string> {
+    if (newPartida.awayTeamId === newPartida.homeTeamId) {
+      return 'It is not possible to create a match with two equal teams';
+    }
+
+    if (!await this.verifyTeam(newPartida.awayTeamId)
+     || !await this.verifyTeam(newPartida.homeTeamId)) {
+      return 'There is no team with such id!';
+    }
+    const novaMatche = await this.matche.create({ ...newPartida, inProgress: true });
+    return novaMatche;
+  }
 }
 
 export default MatcheService;

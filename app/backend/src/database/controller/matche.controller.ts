@@ -28,6 +28,18 @@ class MatcheController {
     await this.matche.updateGoals(Number(id), homeTeamGoals, awayTeamGoals);
     return res.status(200).json({ message: 'Updated' });
   };
+
+  public createNewMatche = async (req: Request, res: Response) => {
+    const theMatch = req.body;
+    const theNewMatch = await this.matche.createNewMatche(theMatch);
+    if (typeof theNewMatch === 'string') {
+      if (theNewMatch.includes('possible')) {
+        return res.status(422).json({ message: theNewMatch });
+      }
+      return res.status(404).json({ message: theNewMatch });
+    }
+    return res.status(201).json(theNewMatch);
+  };
 }
 
 export default MatcheController;
