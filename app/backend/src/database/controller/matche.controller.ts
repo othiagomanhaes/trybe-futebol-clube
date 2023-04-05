@@ -13,8 +13,13 @@ class MatcheController {
       return res.status(200).json(allMatchesQuery);
     }
     const allMatches = await this.matche.getAll();
-    console.log('SHOW ME', allMatches);
     return res.status(200).json(allMatches);
+  };
+
+  public finalizaMatche = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    await this.matche.finalizaMatch(Number(id));
+    return res.status(200).json({ message: 'Finished' });
   };
 }
 
