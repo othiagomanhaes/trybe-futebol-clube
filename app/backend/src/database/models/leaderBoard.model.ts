@@ -36,10 +36,6 @@ class Leaderboard {
         cur.homeTeamId === this._team.id && !cur.inProgress && cur.homeTeamGoals > cur.awayTeamGoals
       ) {
         return acc + 1;
-      } if (
-        cur.awayTeamId === this._team.id && !cur.inProgress && cur.homeTeamGoals < cur.awayTeamGoals
-      ) {
-        return acc + 1;
       }
       return acc;
     }, 0);
@@ -51,12 +47,6 @@ class Leaderboard {
     const draws = this._matches.reduce((acc, cur) => {
       if (
         cur.homeTeamId === this._team.id
-        && !cur.inProgress
-        && cur.homeTeamGoals === cur.awayTeamGoals
-      ) {
-        return acc + 1;
-      } if (
-        cur.awayTeamId === this._team.id
         && !cur.inProgress
         && cur.homeTeamGoals === cur.awayTeamGoals
       ) {
@@ -76,12 +66,6 @@ class Leaderboard {
         && cur.homeTeamGoals < cur.awayTeamGoals
       ) {
         return acc + 1;
-      } if (
-        cur.awayTeamId === this._team.id
-        && !cur.inProgress
-        && cur.homeTeamGoals > cur.awayTeamGoals
-      ) {
-        return acc + 1;
       }
       return acc;
     }, 0);
@@ -96,11 +80,6 @@ class Leaderboard {
         && !cur.inProgress
       ) {
         return acc + cur.homeTeamGoals;
-      } if (
-        cur.awayTeamId === this._team.id
-        && !cur.inProgress
-      ) {
-        return acc + cur.awayTeamGoals;
       }
       return acc;
     }, 0);
@@ -115,11 +94,6 @@ class Leaderboard {
         && !cur.inProgress
       ) {
         return acc + cur.awayTeamGoals;
-      } if (
-        cur.awayTeamId === this._team.id
-        && !cur.inProgress
-      ) {
-        return acc + cur.homeTeamGoals;
       }
       return acc;
     }, 0);
